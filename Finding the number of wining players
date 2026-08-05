@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int winningPlayerCount(int n, int** pick, int pickSize, int* pickColSize) {
+    // 2D Frequency tracking: Rows = players (up to n), Columns = colors (0 to 10)
+    int colorCounts[10][11] = {0}; 
+    
+    // Step 1: Record all ball picks
+    for (int i = 0; i < pickSize; i++) {
+        int player = pick[i][0];
+        int color = pick[i][1];
+        colorCounts[player][color]++;
+    }
+    
+    int winningPlayers = 0;
+    
+    // Step 2: Check each player's win conditions
+    for (int i = 0; i < n; i++) {
+        for (int c = 0; c <= 10; c++) {
+            // Player i wins if they pick strictly more than i balls of the same color
+            if (colorCounts[i][c] > i) {
+                winningPlayers++;
+                break; // A player can only win once, move to next player
+            }
+        }
+    }
+    
+    return winningPlayers;
+}
