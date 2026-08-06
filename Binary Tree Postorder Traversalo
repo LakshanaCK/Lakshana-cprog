@@ -1,0 +1,39 @@
+
+int* postorderTraversal(struct TreeNode* root, int* returnSize) {
+    *returnSize = 0;
+    int* result = (int*)malloc(100 * sizeof(int));
+    if (root == NULL) {
+        return result;
+    }
+
+    struct TreeNode** stack = (struct TreeNode**)malloc(100 * sizeof(struct TreeNode*));
+    int top = -1;
+
+    stack[++top] = root;
+
+    while (top != -1) {
+              struct TreeNode* current = stack[top--];
+      
+        result[*returnSize] = current->val;
+        (*returnSize)++;
+        if (current->left != NULL) {
+            stack[++top] = current->left;
+        }
+
+        if (current->right != NULL) {
+            stack[++top] = current->right;
+        }
+    }
+    int start = 0;
+    int end = (*returnSize) - 1;
+    while (start < end) {
+        int temp = result[start];
+        result[start] = result[end];
+        result[end] = temp;
+        start++;
+        end--;
+    }
+
+    free(stack);
+    return result;
+}
