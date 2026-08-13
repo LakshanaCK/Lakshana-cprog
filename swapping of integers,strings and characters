@@ -1,0 +1,40 @@
+void swap(void* p1,void* p2,int ch);
+int main()
+{
+   int a1=33,b1=44;
+   char a2='d',b2='s';
+   float a3=8.3,b3=9.2;
+   void(*vp)(void*,void*,int);
+   printf("before swaping:\na1=%d\tb1=%d\na2=%c\tb2=%c\na3=%f\tb3=%f\n",a1,b1,a2,b2,a3,b3);
+
+         vp=&swap;
+         vp(&a1,&b1,1);
+         vp(&a2,&b2,2);
+         vp(&a3,&b3,3);
+         printf("after swap:\na1=%d\tb1=%d\na2=%c\tb2=%c\na3=%f\tb3=%f\n",a1,b1,a2,b2,a3,b3);
+         return 0;
+         }
+         void swap(void* p1,void* p2,int ch)
+         {
+         if(ch==1)
+         {
+         int temp;
+         temp=*(int*)p1;
+         *(int*)p1=*(int*)p2;
+         *(int*)p2=temp;
+         }
+         else if(ch==2)
+         {
+         char temp;
+         temp=*(char*)p1;
+         *(char*)p1=*(char*)p2;
+         *(char*)p2=temp;
+         }
+         else
+         {
+            float temp;
+            temp=*(float*)p1;
+            *(float*)p1=*(float*)p2;
+            *(float*)p2=temp;
+         }
+         }
