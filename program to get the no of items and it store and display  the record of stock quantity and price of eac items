@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct sta_det
+{
+   char item_id[10];
+   char name[50];
+   int avail,price;
+}
+*p;
+int main()
+{
+   int n,i,ch;
+   printf("enter the no of items:");
+   scanf("%d",&n);
+   p=(struct sta_det*)malloc(n*sizeof(struct sta_det));
+   for(i=0;i<n;i++)
+   {
+
+   printf("enter the item name:");
+   scanf("%s",&p[i].name);
+   printf("enter the stock quantity:");
+   scanf("%d",&p[i].avail);
+   printf("enter the price:");
+   scanf("%d",&p[i].price);
+}
+for(i=0;i<n;i++)
+{
+   printf(" item name\titem avail\tprice\n");
+   printf("%s\t%s\t%d\t%d\t\n",p[i].item_id,p[i].name,p[i].avail,p[i].price);
+}
+free(p);
+}
+
