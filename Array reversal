@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int num, *arr, i;
+    if (scanf("%d", &num) != 1) return 0;
+    
+    arr = (int*) malloc(num * sizeof(int));
+    for(i = 0; i < num; i++) {
+        if (scanf("%d", arr + i) != 1) return 0;
+    }
+
+    /* Write the logic to reverse the array. */
+    int start = 0;
+    int end = num - 1;
+    while (start < end) {
+        // Swap the elements at start and end pointers
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        
+        // Move pointers closer to the center
+        start++;
+        end--;
+    }
+
+    // Printing the reversed array (HackerRank handling template)
+    for(i = 0; i < num; i++)
+        printf("%d ", *(arr + i));
+        
+    free(arr);
+    return 0;
+}
