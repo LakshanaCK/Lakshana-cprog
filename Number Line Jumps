@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+char* kangaroo(int x1, int v1, int x2, int v2) {
+    // If kangaroo 1 starts behind but is moving slower or at the same speed,
+    // it will never catch up to kangaroo 2.
+    if (v1 <= v2) {
+        return "NO";
+    }
+    
+    // Since v1 > v2 and x2 > x1 (per HackerRank typical structural constraints),
+    // check if the distance between them is perfectly divisible by the relative speed.
+    if ((x2 - x1) % (v1 - v2) == 0) {
+        return "YES";
+    }
+    
+    return "NO";
+}
+
+int main() {
+    int x1, v1, x2, v2;
+    
+    if (scanf("%d %d %d %d", &x1, &v1, &x2, &v2) == 4) {
+        char* result = kangaroo(x1, v1, x2, v2);
+        printf("%s\n", result);
+    }
+    
+    return 0;
+}
