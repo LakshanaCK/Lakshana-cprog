@@ -1,0 +1,14 @@
+int cmp(const void *a, const void *b)
+{
+    return ((*(int **)a)[0] - (*(int **)a)[1]) - ((*(int **)b)[0] - (*(int **)b)[1]);
+}
+
+int twoCitySchedCost(int** costs, int costsSize, int* costsColSize){
+    int result = 0;
+    qsort(costs, costsSize, sizeof(int *), cmp);
+    for(int i = 0; i < costsSize / 2; i++)
+        result += costs[i][0];
+    for(int i = costsSize / 2 ; i < costsSize; i++)
+        result += costs[i][1];
+    return result;
+}
